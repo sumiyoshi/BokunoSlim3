@@ -1,0 +1,8 @@
+{% set layout = '{% extends "layout/layout_'~_module~'.twig" %}' %}
+{% set content_start = '{% block content %}' %}
+{% set content_end = '{% endblock content %}' %}
+{{ layout|raw }}
+
+{{ content_start }}
+
+{{ content_end }}

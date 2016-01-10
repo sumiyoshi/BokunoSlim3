@@ -1,0 +1,7 @@
+<?php
+
+return array(
+{% for route in routes %}
+    '{{ route.route_key }}' => array('route' => '{{ route.route }}', 'module' => '{{ route.module }}', 'controller' => '{{ route.controller }}', 'action' => '{{ route.action }}'),
+{% endfor %}
+);

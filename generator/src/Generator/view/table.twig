@@ -1,0 +1,52 @@
+<?php
+
+{% if data.table.category != '' %}
+namespace Component\Data\Table\{{data.table.category}};
+{% else %}
+namespace Component\Data\Table;
+{% endif %}
+
+use Component\Data\Model\{{data.table.php_name}};
+use Core\Util\ArrayUtil;
+
+/**
+ * Class {{data.table.php_name}}Table
+ *
+{% if data.table.category != ''%}
+ * @package Component\Data\Table\{{data.table.category}};
+{% else %}
+ * @package Component\Data\Table
+{% endif %}
+ */
+class {{data.table.php_name}}Table
+{
+
+    /**
+     * @return \ORMWrapper
+     */
+    public static function getORM(array $keys)
+    {
+        $orm = \Model::factory({{data.table.php_name}}::$_table_use_short_name);
+        self::addCondition($orm, $keys);
+
+        return $orm;
+    }
+
+    /**
+     * @param \ORMWrapper $orm
+     * @param array $keys
+     */
+    public static function addCondition(\ORMWrapper $orm, array $keys)
+    {
+        $tableName = {{data.table.php_name}}::$_table_use_short_name;
+
+{% for items in data.columns %}
+        #region {{items.ja_name}}
+        if (ArrayUtil::hasKey({{data.table.php_name}}::COL_{{ items.name|upper }}, $keys)) {
+            $orm->where($tableName.{{data.table.php_name}}::COL_{{ items.name|upper }}, $keys[{{data.table.php_name}}::COL_{{ items.name|upper }}]);
+        }
+        #endregion
+
+{% endfor %}
+    }
+}

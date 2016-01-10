@@ -1,0 +1,49 @@
+<?php
+
+{% if data.table.category != '' %}
+namespace Component\Data\Model\{{data.table.category}};
+{% else %}
+namespace Component\Data\Model;
+{% endif %}
+
+use Core\Validator\Validator;
+
+/**
+ * Class {{data.table.php_name}}
+{% if data.table.category != '' %}
+ * @package Component\Data\Model\{{data.table.category}};
+{% else %}
+ * @package Component\Data\Model;
+{% endif %}
+ */
+class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
+{
+
+    /**
+     * @return Validator
+     */
+    public function getValidator()
+    {
+
+        $validator = new Validator();
+
+{% for items in data.columns %}
+
+        #region {{ items.ja_name }}
+{% if items.notnull %}
+        $validator->NotEmpty(self::COL_{{ items.name|upper }}, array(
+            'message' => self::COL_JP_{{ items.name|upper }}.'を入力してください'
+        ));
+{% endif %}
+{% if items.size %}
+        $validator->Length(self::COL_{{ items.name|upper }}, array(
+            'max' => {{ items.size }},
+            'message' => self::COL_JP_{{ items.name|upper }}.'は{{ items.size }}文字以下で入力してください',
+        ));
+{% endif %}
+        #endregion
+{% endfor %}
+
+        return $validator;
+    }
+}

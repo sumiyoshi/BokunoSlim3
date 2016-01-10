@@ -1,0 +1,31 @@
+{% set content_start = '{% block content %}' %}
+{% set content_end = '{% endblock content %}' %}
+{% set inline_start = '{% block inline %}' %}
+{% set inline_end = '{% endblock inline %}' %}
+{% set title_start = '{% block title %}' %}
+{% set title_end = '{% endblock title %}' %}
+{% set meta_start = '{% block meta %}' %}
+{% set meta_end = '{% endblock meta %}' %}
+{% set script_start = '{% block script %}' %}
+{% set script_end = '{% endblock script %}' %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {{ title_start }}{{ title_end }}
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{ meta_start }}{{ meta_end }}
+    {{ style_start }}{{ style_end }}
+    {{ script_start }}{{ script_end }}
+</head>
+<body>
+
+{{ content_start }}{{ content_end }}
+
+{{ inline_start }}{{ inline_end }}
+
+</body>
+</html>

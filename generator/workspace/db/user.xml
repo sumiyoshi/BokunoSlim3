@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<table>
+    <table name="user" php_name="User" category="" ></table>
+    <columns name="user_id" ja_name="ID" type="int" size="11" primary_key="1" notnull="1"></columns>
+    <columns name="password" ja_name="パスワード" type="varchar" size="20" primary_key="" notnull=""></columns>
+    <columns name="user_name" ja_name="名前" type="varchar" size="100" primary_key="" notnull=""></columns>
+    <columns name="mail" ja_name="メールアドレス" type="varchar" size="100" primary_key="" notnull=""></columns>
+    <columns name="authority" ja_name="権限" type="char" size="1" primary_key="" notnull=""></columns>
+    <columns name="data_status" ja_name="ステータス" type="char" size="1" primary_key="" notnull="1"></columns>
+    <columns name="create_user" ja_name="作成者" type="varchar" size="100" primary_key="" notnull="1"></columns>
+    <columns name="create_date" ja_name="作成日" type="datetime" size="" primary_key="" notnull="1"></columns>
+    <columns name="update_user" ja_name="更新者" type="varchar" size="100" primary_key="" notnull="1"></columns>
+    <columns name="update_date" ja_name="更新日" type="datetime" size="" primary_key="" notnull="1"></columns>
+</table>

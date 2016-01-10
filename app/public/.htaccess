@@ -1,0 +1,10 @@
+php_flag display_errors On
+php_value date.timezone Asia/Tokyo
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php [L]
+
+#EnableMMAP Off
+#EnableSendfile Off

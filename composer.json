@@ -1,0 +1,21 @@
+{
+  "name": "slim/sy",
+  "description": "framework for sy",
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-0": {
+      "Core": "./app/src",
+      "App": "./app/src",
+      "Component": "./app/src",
+      "Generator": "./generator/src"
+    }
+  },
+  "require": {
+    "slim/slim": "3.*",
+    "zendframework/zendframework": "2.*",
+    "slim/twig-view": "^2.0",
+    "slim/flash": "^0.1.0",
+    "j4mie/idiorm": "*",
+    "j4mie/paris": "*"
+  }
+}
