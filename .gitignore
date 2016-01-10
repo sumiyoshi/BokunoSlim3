@@ -3,3 +3,4 @@ vendor/
 composer.phar
 composer.lock
 app/config/database.php
+script/node_modules
