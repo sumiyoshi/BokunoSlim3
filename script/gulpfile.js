@@ -3,7 +3,7 @@ var typescript = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var notify = require("gulp-notify");
-var dst = './../public/js';
+var dst = './../app/public/js';
 var src = './src';
 var ts_option = {target: 'ES5'};
 
