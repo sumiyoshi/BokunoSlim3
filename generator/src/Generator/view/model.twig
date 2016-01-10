@@ -27,7 +27,7 @@ class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
     /**
      * @return Validator
      */
-    public function getValidator()
+    public static function getValidator()
     {
 
         $validator = new Validator();

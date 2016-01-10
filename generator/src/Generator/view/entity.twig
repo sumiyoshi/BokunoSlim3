@@ -38,6 +38,18 @@ class {{ data.table.php_name }}Entity extends \Model
     );
 
     /**
+     * @param array $data
+     * @return self
+     */
+    public static function create($data=array())
+    {
+        $instance = new static();
+        $instance->orm = \ORM::for_table(static::$_table_use_short_name)->create($data);
+
+        return $instance;
+    }
+
+    /**
      * @return array
      */
     public function getEntities()
