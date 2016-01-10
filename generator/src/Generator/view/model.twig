@@ -10,6 +10,11 @@ use Core\Validator\Validator;
 
 /**
  * Class {{data.table.php_name}}
+  *
+{% for items in data.columns %}
+ * @property string ${{items.name}} {{items.ja_name}}
+{% endfor %}
+ *
 {% if data.table.category != '' %}
  * @package Component\Data\Model\{{data.table.category}};
 {% else %}
