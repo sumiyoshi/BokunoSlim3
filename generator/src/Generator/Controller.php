@@ -110,7 +110,7 @@ class Controller
             #endregion
 
             #region ファイル生成
-            $this->output($model_dir . $class_model, $view->render($model_view, compact('data')), true);
+            $this->output($model_dir . $class_model, $view->render($model_view, compact('data')), false);
             $this->output($entity_dir . $class_entity, $view->render($entity_view, compact('data')), true);
             $this->output($repository_dir . $class_repository, $view->render($repository_view, compact('data')), false);
             #endregion
@@ -209,5 +209,50 @@ class Controller
         # endregion
 
         echo " Build APP complete!\n\n";
+    }
+
+    public function operationAction()
+    {
+        $schema_dir = GENERATOR_ROOT . '/workspace/db/';
+        $list = $this->getFileData($schema_dir);
+
+        //twig
+        $view = $this->getView();
+
+        # region 設定ファイルごとにEntity生成
+        foreach ($list as $data) {
+
+            $table = $data['table'];
+            $data['primary_key'] = $this->getPrimary($data['columns']);
+
+            #region ディレクトリのパス
+            $operation_dir = APP_ROOT . "/src/Component/Operation/".$table['php_name'].'/';
+            #endregion
+
+            #region ディレクトリ生成
+            $this->mkDir($operation_dir);
+            #endregion
+
+
+            #region Class名
+            $class_save =  "SaveOperation.php";
+            $class_delete = "DeleteOperation.php";
+            #endregion
+
+            #region view読み込み
+            $operation_view = $this->getTemplate('operation.twig');
+            #endregion
+
+            #region ファイル生成
+            $data['type'] = 'Save';
+            $this->output($operation_dir . $class_save, $view->render($operation_view, compact('data')), false);
+            $data['type'] = 'Delete';
+            $this->output($operation_dir . $class_delete, $view->render($operation_view, compact('data')), false);
+            #endregion
+
+        }
+        # endregion
+
+        echo " Build Operation complete!\n";
     }
 }
