@@ -34,6 +34,7 @@ class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
 
 {% for items in data.columns %}
 
+{% if items.primary_key != 1 %}
         #region {{ items.ja_name }}
 {% if items.notnull %}
         $validator->NotEmpty(self::COL_{{ items.name|upper }}, array(
@@ -47,6 +48,7 @@ class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
         ));
 {% endif %}
         #endregion
+{% endif %}
 {% endfor %}
 
         return $validator;

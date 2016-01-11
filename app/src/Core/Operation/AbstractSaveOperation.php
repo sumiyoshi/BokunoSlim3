@@ -1,63 +1,85 @@
 <?php
 
-namespace Component\Operation;
+namespace Core\Operation;
 
-use Component\Data\Model\User;
-use Component\Data\Table\UserTable;
 use Core\Util\ArrayUtil;
 
-
 /**
- * Created by IntelliJ IDEA.
- * User: sumi
- * Date: 16/01/10
- * Time: 午後8:23
+ * Class AbstractSaveOperation
+ * @package Component\Operation
  */
-class Save extends \Core\Operation\AbstractOperation
+abstract class AbstractSaveOperation extends AbstractOperation
 {
 
-    /** @var User */
+    /** @var mixed */
     protected $model;
 
-    /** @var UserTable */
+    /** @var mixed */
     protected $table;
 
 
     public function init()
     {
-        #region 更新の場合はモデルセット
-        if ($id = $this->param(User::$_id_column)) {
-            $this->model = 'update';
-            $this->table = new UserTable();
-            $this->model = $this->table->getORM([])->find_one($id);
+        $model = $this->model;
+        $table = $this->table;
+
+        #region 新規・更新別初期処理
+        if ($id = $this->param($model::$_id_column)) {
+            $this->mode = 'update';
+            $this->model = $table::getORM([])->find_one($id);
         } else {
-            $this->model = User::create([]);
+            $this->model = $model::create([]);
         }
         #endregion
     }
 
+    /**
+     * @return bool
+     */
     protected function _run()
     {
-        $this->model->hydrate($this->getParams());
+        #region 保存
+        $this->model->hydrate($this->getEntityData());
+        $res = $this->model->save();
+        #endregion
 
-        echo __CLASS__ . ":" . __line__;
-        print'<pre>';
-        var_dump($this->model->save());
-        print'</pre>';
-        exit;
-
-
-        // TODO: Implement _run() method.
+        if ($res) {
+            $this->setResult($this->model->as_array());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     protected function validate()
     {
         $model = $this->model;
+
+        if (!$model) {
+            $this->addError('system', 'パラメータが不正です');
+            return;
+        }
+
+        /** @var \Core\Validator\Validator $validator */
         $validator = $model::getValidator();
 
-        if (!$validator->validate($this->getParams())) {
+        if (!$validator->validate($this->getEntityData())) {
             $this->setError(ArrayUtil::shiftArray($validator->getMessages()));
             return;
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getEntityData()
+    {
+        $model = $this->model;
+
+        if ($this->mode == 'update') {
+            return ArrayUtil::getMergeEntityData($this->getParams(), $model);
+        } else {
+            return ArrayUtil::getEntityData($this->getParams(), $model);
         }
     }
 }

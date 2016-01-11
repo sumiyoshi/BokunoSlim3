@@ -31,7 +31,7 @@ class {{ data.table.php_name }}Entity extends \Model
 	const COL_JP_{{ items.name|upper }} = '{{ items.ja_name }}';
 {% endfor %}
 
-	protected $_entities = array(
+	private static $_entities = array(
 {% for items in data.columns %}
 		self::COL_{{items.name|upper}} => null,
 {% endfor %}
@@ -52,8 +52,8 @@ class {{ data.table.php_name }}Entity extends \Model
     /**
      * @return array
      */
-    public function getEntities()
+    public static function getEntities()
     {
-        return $this->_entities;
+        return self::$_entities;
     }
 }

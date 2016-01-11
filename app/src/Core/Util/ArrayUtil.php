@@ -24,16 +24,15 @@ class ArrayUtil
 
     /**
      * @param array $data
-     * @param $entity
+     * @param mixed $entity
      * @return array
      */
     public static function getEntityData(array $data, $entity, $unsetPrimaryKey = true)
     {
-
         $res = array();
 
         #region エンティティに登録されている値をセット
-        foreach ($entity->getEntities() as $key => $val) {
+        foreach ($entity::getEntities() as $key => $val) {
             if (array_key_exists($key, $data)) {
                 $res[$key] = $data[$key];
             }
@@ -49,7 +48,27 @@ class ArrayUtil
         #endregion
 
         return $res;
+    }
 
+    /**
+     * @param array $data
+     * @param $entity
+     * @return array
+     */
+    public static function getMergeEntityData(array $data, $entity)
+    {
+
+        if ($entity instanceof \Model) {
+            $res = array();
+            $entity_array = $entity->as_array();
+            foreach ($entity_array as $key => $val) {
+                $res[$key] = (self::hasKey($key, $data)) ? $data[$key] : $val;
+            }
+
+            return $res;
+        } else {
+            return array();
+        }
     }
 
     /**
