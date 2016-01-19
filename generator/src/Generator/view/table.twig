@@ -43,7 +43,7 @@ class {{data.table.php_name}}Table
 {% for items in data.columns %}
         #region {{items.ja_name}}
         if (ArrayUtil::hasKey({{data.table.php_name}}::COL_{{ items.name|upper }}, $keys)) {
-            $orm->where($tableName.{{data.table.php_name}}::COL_{{ items.name|upper }}, $keys[{{data.table.php_name}}::COL_{{ items.name|upper }}]);
+            $orm->where($tableName.'.'.{{data.table.php_name}}::COL_{{ items.name|upper }}, $keys[{{data.table.php_name}}::COL_{{ items.name|upper }}]);
         }
         #endregion
 

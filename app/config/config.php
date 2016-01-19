@@ -14,8 +14,8 @@ return array(
             'debug' => false,
             'template_path' => APP_ROOT . '/src/App/templates',
             'extension' => [
-                '\Core\Twig\Extension\Form',
-                '\Twig_Extension_Debug'
+                \Core\Twig\Extension\Form::class,
+                \Twig_Extension_Debug::class
             ]
         ),
     'routes' => $routes
