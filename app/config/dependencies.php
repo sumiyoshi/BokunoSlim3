@@ -50,3 +50,13 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+$container['notFound'] = function ($c) {
+    /** @var \Slim\Container $c */
+    $view = $c->get('view');
+    $response = $c->get('response');
+    $view->render($response, '404.twig');
+
+    return $response->withStatus(404);
+};
+
+

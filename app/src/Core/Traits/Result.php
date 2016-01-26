@@ -16,20 +16,26 @@ trait Result
     private $errors = array();
 
     /**
-     * @param string $name
-     * @param mixed $value
+     * @param $name
+     * @param $value
+     * @return $this
      */
     protected function addResult($name, $value)
     {
         $this->results[$name] = $value;
+
+        return $this;
     }
 
     /**
      * @param $value
+     * @return $this
      */
     protected function setResult($value)
     {
         $this->results = $value;
+
+        return $this;
     }
 
     /**
@@ -41,8 +47,9 @@ trait Result
     }
 
     /**
-     * @param string $index
-     * @param string $msg
+     * @param $index
+     * @param $msg
+     * @return $this
      */
     protected function addError($index, $msg)
     {
@@ -51,6 +58,8 @@ trait Result
         }
 
         $this->errors[$index] = $msg;
+
+        return $this;
     }
 
     /**
@@ -63,10 +72,13 @@ trait Result
 
     /**
      * @param array $errors
+     * @return $this
      */
     protected function setError(array $errors)
     {
         $this->errors = $errors;
+
+        return $this;
     }
 
     /**

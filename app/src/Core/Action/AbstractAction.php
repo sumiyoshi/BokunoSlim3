@@ -31,6 +31,7 @@ abstract class AbstractAction
     public function init()
     {
         $this->dto['params'] = $this->getActionParameters();
+
     }
 
     /**
@@ -48,6 +49,23 @@ abstract class AbstractAction
     {
         return $this->app->getContainer()->get('request');
     }
+
+    /**
+     * @return \Slim\Http\Response
+     */
+    public function getResponse()
+    {
+        return $this->app->getContainer()->get('response');
+    }
+
+    /**
+     * @return \Slim\Http\Response
+     */
+    public function notFound()
+    {
+        return $this->app->getContainer()->get('notFound');
+    }
+
 
     /**
      * @return array|mixed|null

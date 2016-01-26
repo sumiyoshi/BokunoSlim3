@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Action\AbstractAction;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class CoreSlim
@@ -49,7 +50,7 @@ class CoreSlim extends \Slim\App
                 $class_name = '\\App\\' . $module_name . '\\Action\\' . $controller_name . '\\' . $action_name . 'Action';
 
                 if (!class_exists($class_name)) {
-                    $this->pass();
+                    return $this->get('notFound', null);
                 }
 
                 /** @var AbstractAction $action */
@@ -57,22 +58,29 @@ class CoreSlim extends \Slim\App
                 $action->setApp($coreSlim);
 
                 $variables = null;
-                $action->init();
+                if ($_response = $coreSlim->responseObject(call_user_func(array($action, 'init')))) {
+                    return $_response;
+                }
                 $action->setTemplate($module_name, $controller_name, $action_name);
                 switch ($request->getMethod()) {
                     case 'GET' :
                         if (!method_exists($action, 'get')) {
-                            $this->pass(); // 404
+                            return $this->get('notFound', null);
                         }
 
-                        call_user_func(array($action, 'get'));
+                        if ($_response = $coreSlim->responseObject(call_user_func(array($action, 'get')))) {
+                            return $_response;
+                        }
+
                         break;
                     case 'POST' :
                         if (!method_exists($action, 'post')) {
-                            $this->pass(); // 404
+                            return $this->get('notFound', null);
                         }
 
-                        call_user_func(array($action, 'post'));
+                        if ($_response = $coreSlim->responseObject(call_user_func(array($action, 'post')))) {
+                            return $_response;
+                        }
                         break;
                     default:
                         throw new \Exception('undefined HTTP method.');
@@ -97,8 +105,16 @@ class CoreSlim extends \Slim\App
         return $this;
     }
 
-    private function pass()
+    /**
+     * @param $response
+     * @return bool
+     */
+    private function responseObject($response)
     {
-
+        if ($response instanceof ResponseInterface) {
+            return $response;
+        } else {
+            return false;
+        }
     }
 }
