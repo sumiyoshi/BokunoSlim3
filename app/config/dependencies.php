@@ -37,3 +37,19 @@ $container['notFound'] = function ($c) {
 
     return $response->withStatus(404);
 };
+
+$container['errorHandler'] = function ($c) {
+    /** @var \Slim\Container $c */
+    $view = $c->get('view');
+    $response = $c->get('response');
+    $view->render($response, '500.twig');
+
+    return $response->withStatus(500);
+};
+
+$container['logger'] = function ($c) {
+    /** @var \Slim\Container $c */
+    $config = $c->get('config');
+
+    return \Core\Service\Logger::getLogger($config['log']);
+};

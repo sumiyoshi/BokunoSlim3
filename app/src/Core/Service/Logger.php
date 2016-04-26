@@ -36,6 +36,9 @@ class Logger
             };
             #endregion
 
+            @chmod($info_dir, 0777);
+            @chmod($error_dir, 0777);
+
             #region log初期設定
             $logger = new ZendLogger();
 

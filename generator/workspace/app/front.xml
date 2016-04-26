@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<table>
-    <table name="front" php_name="Front"></table>
-    <columns route_key="/" route="/" controller="Home" action="Index" ></columns>
-    <columns route_key="/user" route="/user" controller="Home" action="User" ></columns>
-</table>
-
