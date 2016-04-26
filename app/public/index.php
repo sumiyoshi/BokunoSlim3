@@ -14,10 +14,16 @@ require APP_ROOT . '/config/session.php';
 # database
 require APP_ROOT . '/config/database.php';
 
-$app = \Core\CoreSlim::init();
+$app = new \Slim\App();
 
 # dependencies
 include APP_ROOT . '/config/dependencies.php';
 
+//$app->run();
+
+$app->any('/{controller:[a-zA-Z_0-9]*}/[{action:[a-zA-Z_0-9]*}/{id:[0-9]*}]', \App\Front\Middleware::class)
+    ->setName('front');
+
 $app->run();
+
 
