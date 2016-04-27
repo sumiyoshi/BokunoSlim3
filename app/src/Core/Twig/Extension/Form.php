@@ -56,7 +56,6 @@ class Form extends \Twig_Extension
             $error = $this->errors_list[$key];
             $html .= ' <div class="error_box">';
             $html .= ' <p>';
-            $html .= '<img src="/img/warning.png" width="20" height="20" />';
             $html .= '<span>' . $error . '</span>';
             $html .= ' </p>';
             $html .= ' </div>';
@@ -149,10 +148,6 @@ class Form extends \Twig_Extension
         foreach ($this->datas as $name => $key) {
 
             if ($name == 'access_token') {
-                continue;
-            }
-
-            if ($name == 'admin_mode') {
                 continue;
             }
 

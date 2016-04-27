@@ -29,10 +29,12 @@ class ErrorHandler
         }
 
         if ($e['type'] == E_NOTICE || $e['type'] == E_STRICT) {
+            self::errorLogNotice($e['message'], $e['file'], $e['line']);
             return;
+        } else {
+            self::errorLog($e['message'], $e['file'], $e['line']);
+            self::send($e['message'], $e['file'], $e['line']);
         }
-
-        self::errorLog($e['message'], $e['file'], $e['line']);
 
         echo 'エラー';
 
@@ -47,11 +49,12 @@ class ErrorHandler
     public static function errorLog($message = null, $file = null, $line = null)
     {
         /** @var \Zend\Log\Logger $logger */
-//        $logger->err('##ERROR START##');
-//        $logger->err('##File## ' . $file);
-//        $logger->err('##Line## ' . $line);
-//        $logger->err('##Message## ' . $message);
-//        $logger->err('##ERROR ERROR END##');
+        $logger = \Core\Service\Logger::getLogger();
+        $logger->err('##ERROR START##');
+        $logger->err('##File## ' . $file);
+        $logger->err('##Line## ' . $line);
+        $logger->err('##Message## ' . $message);
+        $logger->err('##ERROR ERROR END##');
     }
 
     /**
@@ -63,11 +66,12 @@ class ErrorHandler
     private static function errorLogNotice($message = null, $file = null, $line = null)
     {
         /** @var \Zend\Log\Logger $logger */
-//        $logger->err('##NOTICE START##');
-//        $logger->err('##File## ' . $file);
-//        $logger->err('##Line## ' . $line);
-//        $logger->err('##Message## ' . $message);
-//        $logger->err('##NOTICE ERROR END##');
+        $logger = \Core\Service\Logger::getLogger();
+        $logger->err('##NOTICE START##');
+        $logger->err('##File## ' . $file);
+        $logger->err('##Line## ' . $line);
+        $logger->err('##Message## ' . $message);
+        $logger->err('##NOTICE ERROR END##');
     }
 
 

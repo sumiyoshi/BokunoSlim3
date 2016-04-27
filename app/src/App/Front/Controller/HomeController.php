@@ -5,8 +5,8 @@ namespace App\Front\Controller;
 class HomeController extends \Core\Http\AbstractController
 {
     /**
-     * @param $request
-     * @param $response
+     * @param \Slim\Http\Request $request
+     * @param \Slim\Http\Response $response
      * @return array
      */
     public function indexAction($request, $response)

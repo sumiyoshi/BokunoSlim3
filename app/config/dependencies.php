@@ -1,5 +1,6 @@
 <?php
 
+use Core\Service\ErrorHandler;
 use Core\Util\ArrayUtil;
 
 $container = $app->getContainer();
@@ -17,9 +18,7 @@ $container['view'] = function ($c) {
 
     #region Add extensions
     if (ArrayUtil::hasKey('extension', $view_config)) {
-
         $extension = $view_config['extension'];
-
         foreach ($extension as $extension_class) {
             $view->addExtension(new $extension_class);
         }
@@ -29,27 +28,39 @@ $container['view'] = function ($c) {
     return $view;
 };
 
-$container['notFound'] = function ($c) {
-    /** @var \Slim\Container $c */
-    $view = $c->get('view');
-    $response = $c->get('response');
-    $view->render($response, '404.twig');
+$container['notFoundHandler'] = function ($c) {
+    /**
+     * @param \Slim\Http\Request $request
+     * @param \Slim\Http\Response $response
+     * @return $response
+     */
+    return function ($request, $response) use ($c) {
 
-    return $response->withStatus(404);
+        /** @var \Slim\Container $c */
+        $view = $c->get('view');
+        $view->render($response, '404.twig');
+
+        return $response->withStatus(404);
+    };
 };
 
 $container['errorHandler'] = function ($c) {
-    /** @var \Slim\Container $c */
-    $view = $c->get('view');
-    $response = $c->get('response');
-    $view->render($response, '500.twig');
 
-    return $response->withStatus(500);
-};
+    /**
+     * @param \Slim\Http\Request $request
+     * @param \Slim\Http\Response $response
+     * @return $response
+     */
+    return function ($request, $response, \Exception $e) use ($c) {
 
-$container['logger'] = function ($c) {
-    /** @var \Slim\Container $c */
-    $config = $c->get('config');
+        /** @var \Slim\Container $c */
+        $view = $c->get('view');
+        $response = $c->get('response');
+        $view->render($response, '500.twig');
 
-    return \Core\Service\Logger::getLogger($config['log']);
+        ErrorHandler::errorLog($e->getMessage(), $e->getFile(), $e->getLine());
+        ErrorHandler::send($e->getMessage(), $e->getFile(), $e->getLine());
+
+        return $response->withStatus(500);
+    };
 };

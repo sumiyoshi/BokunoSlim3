@@ -15,12 +15,15 @@ class Logger
 
     private static $logger;
 
+    public static $log_path;
+
     /**
-     * @param $log_path
      * @return ZendLogger
      */
-    public static function getLogger($log_path)
+    public static function getLogger()
     {
+        $log_path = self::$log_path;
+
         if (!self::$logger) {
             #region ディレクトリ生成
             $date = date('Ym');
@@ -56,12 +59,12 @@ class Logger
             #endregion
 
 
-            if (file_exists($error_dir.$file_name)) {
-                @chmod($error_dir.$file_name, 0777);
+            if (file_exists($error_dir . $file_name)) {
+                @chmod($error_dir . $file_name, 0777);
             }
 
-            if (file_exists($info_dir.$file_name)) {
-                @chmod($info_dir.$file_name, 0777);
+            if (file_exists($info_dir . $file_name)) {
+                @chmod($info_dir . $file_name, 0777);
             }
 
             self::$logger = $logger;

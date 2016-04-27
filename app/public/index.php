@@ -20,9 +20,7 @@ $app = new \Slim\App();
 # dependencies
 include APP_ROOT . '/config/dependencies.php';
 
-$app->any('/{controller:[a-zA-Z_0-9]*}/[{action:[a-zA-Z_0-9]*}/{id:[0-9]*}]', \App\Front\Middleware::class)->setName('front');
-
-register_shutdown_function(['\Core\ErrorHandler', 'shutdownHandler']);
+include APP_ROOT . '/config/system.php';
 
 $app->run();
 
