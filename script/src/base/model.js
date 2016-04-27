@@ -5,6 +5,7 @@
 
     App.Models.Model.prototype = ({
         data: [],
+        errors: [],
         api: null,
         status: null,
 
@@ -29,7 +30,7 @@
          */
         success: function (res) {
             this.status = res.status;
-            this.addData(this.receive(res));
+            this.addData(res);
         },
 
         /**
@@ -52,19 +53,20 @@
         },
 
         /**
-         * @param data
+         * @param response
          */
-        addData: function (data) {
+        addData: function (response) {
             var that = this;
 
             that.data = [];
+            that.errors = [];
             if (this.status) {
-                _.each(data, function (item) {
+                _.each(response.data, function (item) {
                     that.data.push(item);
                 });
             } else {
-                _.each(data.error, function (item) {
-                    that.data.push(item);
+                _.each(response.error, function (item) {
+                    that.errors.push(item);
                 });
             }
         },
@@ -73,8 +75,16 @@
          *
          * @returns {Array}
          */
-        get: function () {
+        getData: function () {
             return this.data;
+        },
+
+        /**
+         *
+         * @returns {Array}
+         */
+        getError: function () {
+            return this.errors
         }
     });
 })(window.App);

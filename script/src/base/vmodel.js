@@ -15,9 +15,9 @@
             var api = new App.Services.API();
             this.promise = api.promise;
 
-            this.setEvents();
-            this.setModels();
             this.initViewModel();
+            this.setModels();
+            this.setEvents();
         },
 
         initViewModel: function () {

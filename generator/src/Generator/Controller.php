@@ -124,92 +124,91 @@ class Controller
     /**
      * アプリケーションモジュール追加
      */
-    public function appAction()
-    {
-        $schema_dir = GENERATOR_ROOT . '/workspace/app/';
-        $list = $this->getFileData($schema_dir);
-
-        # region 設定ファイルごとに生成
-        foreach ($list as $data) {
-
-            $module = $data['table'];
-
-            #region モジュール
-            $module_dir = APP_ROOT . "/src/App/" . $module['php_name'];
-            $template_dir = APP_ROOT . "/src/App/templates/" . $module['name'];
-            $layout_dir = APP_ROOT . "/src/App/templates/layout";
-            $router_dir = APP_ROOT . "/config/router/";
-            $this->mkDir($module_dir);
-            $this->mkDir($module_dir . '/Action/');
-            $this->mkDir($template_dir);
-            $this->mkDir($layout_dir);
-            #endregion
-
-
-            $routes = array();
-            foreach ($data['columns'] as $row) {
-
-                $lower_controller_name = mb_strtolower($row['controller']);
-                $lower_action_name = mb_strtolower($row['action']);
-                $row['module'] = $module['php_name'];
-                $routes[] = $row;
-
-                #region ディレクトリパス
-                $action_dir = $module_dir . '/Action/' . $row['controller'];
-                $template_action_dir = $template_dir . '/' . $lower_controller_name;
-                #endregion
-
-                #region ディレクトリ生成
-                $this->mkDir($action_dir);
-                $this->mkDir($template_action_dir);
-                #endregion
-
-
-                #region Class名
-                $class_action = $row['action'] . "Action.php";
-                $class_view = $lower_action_name . ".twig";
-                #endregion
-
-
-                #region view読み込み
-                $action_view = $this->getTemplate('action.twig');
-                $template_view = $this->getTemplate('twig_view.twig');
-                #endregion
-
-
-                $data['module'] = $module;
-                $data['lower_controller_name'] = $lower_controller_name;
-                $data['lower_action_name'] = $lower_action_name;
-                $data['row'] = $row;
-
-
-                #region ファイル生成
-                $this->output($template_action_dir . '/' . $class_view, $this->getView()->render($template_view, [
-                    '_module' => $module['name']
-                ]), false);
-                $this->output($action_dir . '/' . $class_action, $this->getView()->render($action_view, compact('data')), false);
-                #endregion
-            }
-
-            #region view読み込み
-            $route_view = $this->getTemplate('route.twig');
-            $layout_view = $this->getTemplate('layout.twig');
-            $abstract_action_view = $this->getTemplate('abstract_action.twig');
-            #endregion
-
-            #region ファイル生成
-            $this->output($layout_dir . '/layout_' . $module['name'] . '.twig', $this->getView()->render($layout_view, [
-                'data' => $module
-            ]), false);
-            $this->output($module_dir . '/Action/AbstractAction.php', $this->getView()->render($abstract_action_view, compact('data')), false);
-            $this->output($router_dir . '/route_' . $module['name'] . '.php', $this->getView()->render($route_view, compact('routes')), true);
-            #endregion
-
-        }
-        # endregion
-
-        echo " Build APP complete!\n\n";
-    }
+//    public function appAction()
+//    {
+//        $schema_dir = GENERATOR_ROOT . '/workspace/app/';
+//        $list = $this->getFileData($schema_dir);
+//
+//        # region 設定ファイルごとに生成
+//        foreach ($list as $data) {
+//
+//            $module = $data['table'];
+//
+//            #region モジュール
+//            $module_dir = APP_ROOT . "/src/App/" . $module['php_name'];
+//            $template_dir = APP_ROOT . "/src/App/templates/" . $module['name'];
+//            $layout_dir = APP_ROOT . "/src/App/templates/layout";
+//            $router_dir = APP_ROOT . "/config/router/";
+//            $this->mkDir($module_dir);
+//            $this->mkDir($module_dir . '/Controller/');
+//            $this->mkDir($template_dir);
+//            $this->mkDir($layout_dir);
+//            #endregion
+//
+//            $routes = array();
+//            foreach ($data['columns'] as $row) {
+//
+//                $lower_controller_name = mb_strtolower($row['controller']);
+//                $lower_action_name = mb_strtolower($row['action']);
+//                $row['module'] = $module['php_name'];
+//                $routes[] = $row;
+//
+//                #region ディレクトリパス
+//                $action_dir = $module_dir . '/Action/' . $row['controller'];
+//                $template_action_dir = $template_dir . '/' . $lower_controller_name;
+//                #endregion
+//
+//                #region ディレクトリ生成
+//                $this->mkDir($action_dir);
+//                $this->mkDir($template_action_dir);
+//                #endregion
+//
+//
+//                #region Class名
+//                $class_action = $row['action'] . "Action.php";
+//                $class_view = $lower_action_name . ".twig";
+//                #endregion
+//
+//
+//                #region view読み込み
+//                $action_view = $this->getTemplate('action.twig');
+//                $template_view = $this->getTemplate('twig_view.twig');
+//                #endregion
+//
+//
+//                $data['module'] = $module;
+//                $data['lower_controller_name'] = $lower_controller_name;
+//                $data['lower_action_name'] = $lower_action_name;
+//                $data['row'] = $row;
+//
+//
+//                #region ファイル生成
+//                $this->output($template_action_dir . '/' . $class_view, $this->getView()->render($template_view, [
+//                    '_module' => $module['name']
+//                ]), false);
+//                $this->output($action_dir . '/' . $class_action, $this->getView()->render($action_view, compact('data')), false);
+//                #endregion
+//            }
+//
+//            #region view読み込み
+//            $route_view = $this->getTemplate('route.twig');
+//            $layout_view = $this->getTemplate('layout.twig');
+//            $abstract_action_view = $this->getTemplate('abstract_action.twig');
+//            #endregion
+//
+//            #region ファイル生成
+//            $this->output($layout_dir . '/layout_' . $module['name'] . '.twig', $this->getView()->render($layout_view, [
+//                'data' => $module
+//            ]), false);
+//            $this->output($module_dir . '/Action/AbstractAction.php', $this->getView()->render($abstract_action_view, compact('data')), false);
+//            $this->output($router_dir . '/route_' . $module['name'] . '.php', $this->getView()->render($route_view, compact('routes')), true);
+//            #endregion
+//
+//        }
+//        # endregion
+//
+//        echo " Build APP complete!\n\n";
+//    }
 
     public function operationAction()
     {

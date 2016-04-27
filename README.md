@@ -30,11 +30,6 @@ Entity,Model,Table生成
     cd my/project/dir/generator/bin
     php orm.php
 
-App Module生成(ディレクトリの作成)
-
-    cd my/project/dir/generator/bin
-    php app.php
-    
 Operation生成(ディレクトリの作成)
 
     cd my/project/dir/generator/bin
