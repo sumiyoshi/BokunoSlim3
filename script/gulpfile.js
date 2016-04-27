@@ -26,8 +26,10 @@ gulp.task('watch', function () {
 
 gulp.task('lib', function () {
     gulp.src([
+        './node_modules/jquery/dist/jquery.min.js',
         './node_modules/moment/min/moment.min.js',
-        './node_modules/underscore/underscore-min.js'
+        './node_modules/underscore/underscore-min.js',
+        './node_modules/knockout/build/output/knockout-latest.js'
     ])
         .pipe(concat('lib.js'))
         .pipe(gulp.dest(dst + '/js/'))
