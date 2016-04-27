@@ -92,4 +92,15 @@ abstract class AbstractRule
             return true;
         }
     }
+
+    /**
+     * @param $str
+     * @return mixed
+     */
+    protected function spaceTrim($str)
+    {
+        $str = preg_replace('/^[ 　]+/u', '', $str);
+        $str = preg_replace('/[ 　]+$/u', '', $str);
+        return $str;
+    }
 }

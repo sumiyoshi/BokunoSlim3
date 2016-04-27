@@ -43,7 +43,7 @@ class NotEmpty extends AbstractRule
 
         $validate = true;
 
-        $str_value = (string)$value;
+        $str_value = (string)$this->spaceTrim($value);
 
         if ($str_value === '') {
             $validate = false;
