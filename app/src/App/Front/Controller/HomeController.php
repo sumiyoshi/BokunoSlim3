@@ -2,24 +2,23 @@
 
 namespace App\Front\Controller;
 
-class HomeController extends \Core\Http\AbstractController
+use Core\Http\Controller;
+
+class HomeController extends Controller
 {
+
     /**
-     * @param \Slim\Http\Request $request
-     * @param \Slim\Http\Response $response
      * @return array
      */
-    public function indexAction($request, $response)
+    public function indexAction()
     {
         return $this->dto;
     }
 
     /**
-     * @param $request
-     * @param $response
      * @return array
      */
-    public function userAction($request, $response)
+    public function userAction($id)
     {
         return $this->dto;
     }

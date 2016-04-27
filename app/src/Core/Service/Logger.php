@@ -58,7 +58,6 @@ class Logger
             $logger->addWriter($writer_info);
             #endregion
 
-
             if (file_exists($error_dir . $file_name)) {
                 @chmod($error_dir . $file_name, 0777);
             }

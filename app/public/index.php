@@ -23,4 +23,3 @@ include APP_ROOT . '/config/dependencies.php';
 include APP_ROOT . '/config/system.php';
 
 $app->run();
-
