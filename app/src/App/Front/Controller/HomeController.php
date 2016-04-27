@@ -4,6 +4,10 @@ namespace App\Front\Controller;
 
 use Core\Http\Controller;
 
+/**
+ * Class HomeController
+ * @package App\Front\Controller
+ */
 class HomeController extends Controller
 {
 
