@@ -6,6 +6,7 @@ namespace Core\Service;
  * Class Injection
  *
  * @package Core\Service
+ * @author sumiyoshi
  */
 class Injection
 {

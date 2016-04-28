@@ -4,7 +4,9 @@ namespace Core\Util;
 
 /**
  * Class DateUtil
+ *
  * @package Core\Util
+ * @author sumiyoshi
  */
 class DateUtil
 {

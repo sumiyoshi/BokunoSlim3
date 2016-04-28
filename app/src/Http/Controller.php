@@ -7,7 +7,9 @@ use Slim\Http\Response;
 
 /**
  * Class Controller
+ *
  * @package Core\Http
+ * @author sumiyoshi
  */
 abstract class Controller
 {
@@ -33,9 +35,10 @@ abstract class Controller
 
 
     /**
-     * Middleware constructor.
+     * Controller constructor.
      * @param Request $request
      * @param Response $response
+     * @param $template
      */
     public function __construct(Request $request, Response $response, $template)
     {

@@ -9,7 +9,9 @@ use Zend\Mail\Transport\SmtpOptions;
 
 /**
  * Class ErrorHandler
+ *
  * @package Component\Service
+ * @author sumiyoshi
  */
 class ErrorHandler
 {

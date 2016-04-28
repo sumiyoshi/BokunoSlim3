@@ -4,7 +4,9 @@ namespace Core\Service;
 
 /**
  * Class Cache
+ *
  * @package Core\Service
+ * @author sumiyoshi
  */
 class Cache
 {

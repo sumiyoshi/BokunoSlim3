@@ -5,8 +5,10 @@ namespace Http;
 use Interop\Container\ContainerInterface;
 
 /**
- * Class AbstractMiddleware
+ * Class Middleware
+ *
  * @package Core\Http
+ * @author sumiyoshi
  */
 abstract class Middleware
 {

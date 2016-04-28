@@ -4,7 +4,9 @@ namespace Component\Operation;
 
 /**
  * Class DeleteOperation
+ *
  * @package Component\Operation
+ * @author sumiyoshi
  */
 abstract class DeleteOperation extends Operation
 {

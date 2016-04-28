@@ -4,7 +4,9 @@ namespace Component\Operation;
 
 /**
  * Interface OperationInterface
+ *
  * @package Component\Operation
+ * @author sumiyoshi
  */
 interface OperationInterface
 {

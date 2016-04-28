@@ -4,7 +4,9 @@ namespace Core\Util;
 
 /**
  * Class ArrayUtil
+ *
  * @package Core\Util
+ * @author sumiyoshi
  */
 class ArrayUtil
 {

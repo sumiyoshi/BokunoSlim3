@@ -4,7 +4,9 @@ namespace Core\Traits;
 
 /**
  * Class Singleton
+ *
  * @package Core\Traits
+ * @author sumiyoshi
  */
 trait Singleton
 {

@@ -6,6 +6,7 @@ namespace Core;
  * Class Application
  *
  * @package Core
+ * @author sumiyoshi
  */
 class Application
 {

@@ -6,6 +6,7 @@ namespace Core\Service;
  * Class SessionDbHandler
  *
  * @package Component\Service
+ * @author sumiyoshi
  */
 class SessionDbHandler implements \SessionHandlerInterface
 {

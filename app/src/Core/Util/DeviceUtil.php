@@ -4,7 +4,9 @@ namespace Core\Util;
 
 /**
  * Class DeviceUtil
+ *
  * @package Core\Util
+ * @author sumiyoshi
  */
 class DeviceUtil
 {

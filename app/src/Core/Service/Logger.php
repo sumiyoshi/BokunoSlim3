@@ -9,6 +9,7 @@ use Zend\Log\Filter\Priority;
  * Class Logger
  *
  * @package Component\Library
+ * @author sumiyoshi
  */
 class Logger
 {

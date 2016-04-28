@@ -4,7 +4,9 @@ namespace Component\Operation;
 
 /**
  * Class Operation
+ *
  * @package Component\Operation
+ * @author sumiyoshi
  */
 abstract class Operation implements OperationInterface
 {

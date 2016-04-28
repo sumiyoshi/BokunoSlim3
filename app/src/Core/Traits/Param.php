@@ -4,7 +4,9 @@ namespace Core\Traits;
 
 /**
  * Class Param
+ *
  * @package Core\Traits
+ * @author sumiyoshi
  */
 trait Param
 {

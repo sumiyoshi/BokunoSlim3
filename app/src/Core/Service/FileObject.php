@@ -4,7 +4,9 @@ namespace Core\Service;
 
 /**
  * Class FileObject
+ *
  * @package Component\Service
+ * @author sumiyoshi
  */
 class FileObject
 {

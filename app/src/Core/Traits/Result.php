@@ -4,7 +4,9 @@ namespace Core\Traits;
 
 /**
  * Class Result
+ *
  * @package Core\Traits
+ * @author sumiyoshi
  */
 trait Result
 {

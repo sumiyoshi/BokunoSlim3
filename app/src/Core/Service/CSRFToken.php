@@ -4,7 +4,9 @@ namespace Core\Service;
 
 /**
  * Class CSRFToken
+ *
  * @package Core\Service
+ * @author sumiyoshi
  */
 class CSRFToken
 {
