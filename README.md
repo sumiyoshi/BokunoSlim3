@@ -1,4 +1,4 @@
-BokunoSlim3 ver 1.0.0
+Bokuno Slim3
 =======================
 
 Using Composer
