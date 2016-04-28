@@ -1,0 +1,32 @@
+{% extends "layout/layout_front.twig" %}
+
+{% block content %}
+
+    <p>First name:<input data-bind="value: firstName" /></p>
+    <p>Last name:<input data-bind="value: lastName" /></p>
+    <p>Full name:<span data-bind="text: fullName"></span></p>
+
+{% endblock content %}
+
+
+{% block inline %}
+
+    <script>
+
+        $(function () {
+            function AppViewModel() {
+                this.firstName = ko.observable("Taro");
+                this.lastName = ko.observable("Yamada");
+
+                this.fullName = ko.computed(function() {
+                    return this.firstName() + " " + this.lastName();
+                }, this);
+            }
+
+            ko.applyBindings(new AppViewModel());
+        });
+
+    </script>
+
+
+{% endblock inline %}

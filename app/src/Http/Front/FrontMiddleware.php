@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Front;
+namespace Http\Front;
 
 /**
  * Class FrontMiddleware
  * @package App\Front
  */
-class FrontMiddleware extends \Core\Http\Middleware
+class FrontMiddleware extends \Http\Middleware
 {
 
     /**
      * @param \Core\Service\Injection $injection
-     * @param \Core\Http\Controller $controller
+     * @param \Http\Controller $controller
      * @param $actionName
      * @return \Slim\Http\Response
      */
@@ -39,7 +39,7 @@ class FrontMiddleware extends \Core\Http\Middleware
      */
     protected function getController($controllerName)
     {
-        return '\\App\\Front\\Controller\\' . $controllerName . 'Controller';
+        return '\\Http\\Front\\Controller\\' . $controllerName . 'Controller';
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Http;
+namespace Http;
 
 use Slim\Http\Request;
 use Slim\Http\Response;

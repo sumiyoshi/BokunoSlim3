@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\Operation;
+namespace Component\Operation;
 
 /**
  * Interface OperationInterface
- * @package Core\Operations
+ * @package Component\Operation
  */
 interface OperationInterface
 {

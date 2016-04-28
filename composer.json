@@ -5,7 +5,7 @@
   "autoload": {
     "psr-0": {
       "Core": "./app/src",
-      "App": "./app/src",
+      "Http": "./app/src",
       "Component": "./app/src",
       "Generator": "./generator/src"
     }

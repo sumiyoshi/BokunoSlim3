@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Http;
+namespace Http;
 
 use Interop\Container\ContainerInterface;
 
@@ -70,7 +70,7 @@ abstract class Middleware
 
         #endregion
 
-        /** @var \Core\Http\Controller $controller */
+        /** @var \Http\Controller $controller */
         $controller = $injection->newInstance();
 
         #region アクションが存在しない場合
@@ -136,7 +136,7 @@ abstract class Middleware
 
     /**
      * @param \Core\Service\Injection $injection
-     * @param \Core\Http\Controller $controller
+     * @param \Http\Controller $controller
      * @param $actionName
      * @return \Slim\Http\Response
      */

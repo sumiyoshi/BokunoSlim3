@@ -1,14 +1,14 @@
 <?php
 
-namespace Core\Operation;
+namespace Component\Operation;
 
 use Core\Util\ArrayUtil;
 
 /**
- * Class AbstractSaveOperation
+ * Class SaveOperation
  * @package Component\Operation
  */
-abstract class AbstractSaveOperation extends AbstractOperation
+abstract class SaveOperation extends Operation
 {
 
     /** @var mixed */

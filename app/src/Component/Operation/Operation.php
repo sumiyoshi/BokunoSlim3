@@ -1,12 +1,12 @@
 <?php
 
-namespace Core\Operation;
+namespace Component\Operation;
 
 /**
- * Class AbstractCommand
- * @package Core\Command
+ * Class Operation
+ * @package Component\Operation
  */
-abstract class AbstractOperation implements OperationInterface
+abstract class Operation implements OperationInterface
 {
     use \Core\Traits\Result;
     use \Core\Traits\Param;

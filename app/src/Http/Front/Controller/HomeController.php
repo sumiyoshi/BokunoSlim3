@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Front\Controller;
+namespace Http\Front\Controller;
 
-use Core\Http\Controller;
+use Http\Controller;
 
 /**
  * Class HomeController
@@ -22,7 +22,7 @@ class HomeController extends Controller
     /**
      * @return array
      */
-    public function userAction($id)
+    public function userAction()
     {
         return $this->dto;
     }

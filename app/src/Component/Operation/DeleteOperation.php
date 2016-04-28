@@ -1,12 +1,12 @@
 <?php
 
-namespace Core\Operation;
+namespace Component\Operation;
 
 /**
- * Class AbstractDeleteOperation
+ * Class DeleteOperation
  * @package Component\Operation
  */
-abstract class AbstractDeleteOperation extends AbstractOperation
+abstract class DeleteOperation extends Operation
 {
 
     /** @var mixed */
