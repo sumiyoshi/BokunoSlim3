@@ -1,4 +1,4 @@
-BokunoSlim3
+Bokuno Slim3
 =======================
 
 Using Composer
