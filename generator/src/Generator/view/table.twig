@@ -22,9 +22,10 @@ class {{data.table.php_name}}Table
 {
 
     /**
+     * @param array $keys
      * @return \ORMWrapper
      */
-    public static function getORM(array $keys)
+    public static function getORM(array $keys = [])
     {
         $orm = \Model::factory({{data.table.php_name}}::$_table_use_short_name);
         self::addCondition($orm, $keys);

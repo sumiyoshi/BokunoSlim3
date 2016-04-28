@@ -11,7 +11,7 @@ abstract class Operation implements OperationInterface
     use \Core\Traits\Result;
     use \Core\Traits\Param;
 
-    public $mode;
+    protected $mode;
 
     public function run()
     {

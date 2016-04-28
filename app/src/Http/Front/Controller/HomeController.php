@@ -18,13 +18,4 @@ class HomeController extends Controller
     {
         return $this->dto;
     }
-
-    /**
-     * @return array
-     */
-    public function userAction()
-    {
-        return $this->dto;
-    }
-
 }
