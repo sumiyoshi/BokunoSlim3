@@ -10,10 +10,12 @@ return [
                 \Twig_Extension_Debug::class
             ]
         ],
-    'log' => SERVER_ROOT . '/data/log/'
+    'log' => SERVER_ROOT . '/data/log/',
+    'database' =>
+        [
+            'host' => 'localhost',
+            'db' => 'ani',
+            'username' => 'root',
+            'password' => ''
+        ]
 ];
-
-
-
-
-

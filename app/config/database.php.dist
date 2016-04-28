@@ -1,9 +1,0 @@
-<?php
-
-\ORM::configure('mysql:host=localhost;dbname=zf2;charset=utf8');
-\ORM::configure('username', 'root');
-\ORM::configure('password', 'pass');
-\ORM::configure('caching', true);
-\ORM::configure('caching_auto_clear', true);
-
-\Model::$auto_prefix_models = '\\Component\\Data\\Model\\';

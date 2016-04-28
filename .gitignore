@@ -2,5 +2,5 @@
 vendor/
 composer.phar
 composer.lock
-app/config/database.php
+app/config/local.php
 script/node_modules

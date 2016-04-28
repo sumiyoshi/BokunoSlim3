@@ -5,14 +5,10 @@ use Core\Util\ArrayUtil;
 
 $container = $app->getContainer();
 
-$container['config'] = function () {
-    return include __DIR__ . '/config.php';
-};
-
 $container['view'] = function ($c) {
-    /** @var \Slim\Container $c */
-    $config = $c->get('config');
-    $view_config = $config['view'];
+    /** @var \Core\Application $config */
+    $config = \Core\Application::getInstance();
+    $view_config = $config->get('view');
 
     $view = new \Slim\Views\Twig($view_config['template_path'], $view_config);
 

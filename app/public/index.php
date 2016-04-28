@@ -10,16 +10,6 @@ require SERVER_ROOT . '/vendor/autoload.php';
 
 # define
 require APP_ROOT . '/config/define.php';
-# session
-require APP_ROOT . '/config/session.php';
-# database
-require APP_ROOT . '/config/database.php';
 
-$app = new \Slim\App();
-
-# dependencies
-include APP_ROOT . '/config/dependencies.php';
-
-include APP_ROOT . '/config/system.php';
-
-$app->run();
+# run
+include APP_ROOT . '/bootstrap.php';
