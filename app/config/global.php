@@ -14,7 +14,7 @@ return [
     'database' =>
         [
             'host' => 'localhost',
-            'db' => 'ani',
+            'db' => 'test',
             'username' => 'root',
             'password' => ''
         ]

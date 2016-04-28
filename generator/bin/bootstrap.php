@@ -8,5 +8,26 @@ define('CONIFG_ROOT', APP_ROOT . '/config/');
 # autoload
 require SERVER_ROOT . '/vendor/autoload.php';
 
-# database
-require APP_ROOT . '/config/database.php';
+/** @var \Core\Application $config */
+$config = \Core\Application::getInstance();
+
+#region DB
+if ($database = $config->get('database')) {
+
+    $host = $database['host'];
+    $db = $database['db'];
+    $username = $database['username'];
+    $password = $database['password'];
+
+    \ORM::configure("mysql:host={$host};dbname={$db};charset=utf8");
+    \ORM::configure('username', $username);
+    if ($password) {
+        \ORM::configure('password', $password);
+    }
+    \ORM::configure('caching', true);
+    \ORM::configure('caching_auto_clear', true);
+    \ORM::configure('default_charset', "utf-8");
+}
+
+\Model::$auto_prefix_models = '\\Component\\Data\\Model\\';
+#endregion
