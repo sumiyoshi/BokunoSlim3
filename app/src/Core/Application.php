@@ -13,6 +13,9 @@ class Application
 
     use \Core\Traits\Singleton;
 
+    /**
+     * @var array
+     */
     private $config = [];
 
     private function __construct()

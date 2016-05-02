@@ -14,16 +14,11 @@ abstract class DeleteOperation extends Operation
     /** @var mixed */
     protected $model;
 
-    /** @var mixed */
-    protected $table;
-
     public function init()
     {
         $model = $this->model;
-        $table = $this->table;
-
         if ($id = $this->param($model::$_id_column)) {
-            $this->model = $table::getORM([])->find_one($id);
+            $this->model = $model::getORM()->find_one($id);
         }
         #endregion
     }

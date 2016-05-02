@@ -1,17 +1,19 @@
 <?php
 
 {% if data.table.category != '' %}
-namespace Component\Data\Model\Entity\{{ data.table.category }};
+namespace Component\Model\Entity\{{ data.table.category }};
 {% else %}
-namespace Component\Data\Model\Entity;
+namespace Component\Model\Entity;
 {% endif %}
+
+use Core\Util\ArrayUtil;
 
 /**
  * Class {{ data.table.php_name }}
 {% if data.table.category != '' %}
- * @package Component\Data\Model\Entity\{{ data.table.category }};
+ * @package Component\Model\Entity\{{ data.table.category }};
 {% else %}
- * @package Component\Data\Model\Entity
+ * @package Component\Model\Entity
 {% endif %}
  */
 class {{ data.table.php_name }}Entity extends \Model
@@ -55,5 +57,35 @@ class {{ data.table.php_name }}Entity extends \Model
     public static function getEntities()
     {
         return self::$_entities;
+    }
+
+    /**
+     * @param array $keys
+     * @return \ORMWrapper
+     */
+    public static function getORM(array $keys = [])
+    {
+        $orm = \Model::factory(static::$_table_use_short_name);
+        self::addCondition($orm, $keys);
+
+        return $orm;
+    }
+
+    /**
+     * @param \ORMWrapper $orm
+     * @param array $keys
+     */
+    public static function addCondition(\ORMWrapper $orm, array $keys)
+    {
+        $tableName = static::$_table_use_short_name;
+
+{% for items in data.columns %}
+        #region {{items.ja_name}}
+        if (ArrayUtil::hasKey(static::COL_{{ items.name|upper }}, $keys)) {
+            $orm->where($tableName.'.'.static::COL_{{ items.name|upper }}, $keys[static::COL_{{ items.name|upper }}]);
+        }
+        #endregion
+
+{% endfor %}
     }
 }

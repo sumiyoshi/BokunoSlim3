@@ -16,19 +16,14 @@ abstract class SaveOperation extends Operation
     /** @var mixed */
     protected $model;
 
-    /** @var mixed */
-    protected $table;
-
-
     public function init()
     {
         $model = $this->model;
-        $table = $this->table;
 
         #region 新規・更新別初期処理
         if ($id = $this->param($model::$_id_column)) {
             $this->mode = 'update';
-            $this->model = $table::getORM([])->find_one($id);
+            $this->model = $model::getORM([])->find_one($id);
         } else {
             $this->model = $model::create([]);
         }

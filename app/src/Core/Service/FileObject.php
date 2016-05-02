@@ -11,6 +11,11 @@ namespace Core\Service;
 class FileObject
 {
     /**
+     * @var string
+     */
+    public static $tmp_root;
+
+    /**
      * @param $file_path
      * @return string
      */
@@ -19,7 +24,7 @@ class FileObject
         setlocale(LC_ALL, 'ja_JP.UTF-8');
 
 
-        $dir = TMP_ROOT . '/' . date('Ymd') . '/';
+        $dir = self::$tmp_root . '/' . date('Ymd') . '/';
         if (!file_exists($dir)) {
             @mkdir($dir, 0777);
         };

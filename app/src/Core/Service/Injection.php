@@ -108,7 +108,7 @@ class Injection
 
     /**
      * @param \ReflectionParameter $parameter
-     * @return bool
+     * @return null
      */
     private function getArgument(\ReflectionParameter $parameter)
     {
@@ -129,6 +129,6 @@ class Injection
             }
         }
 
-        return false;
+        return null;
     }
 }
