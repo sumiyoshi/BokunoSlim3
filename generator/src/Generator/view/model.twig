@@ -29,13 +29,10 @@ class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
      */
     public static function getValidator()
     {
-
         $validator = new Validator();
 
 {% for items in data.columns %}
-
 {% if items.primary_key != 1 %}
-        #region {{ items.ja_name }}
 {% if items.notnull %}
         $validator->NotEmpty(self::COL_{{ items.name|upper }}, array(
             'message' => self::COL_JP_{{ items.name|upper }}.'を入力してください'
@@ -47,10 +44,10 @@ class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity
             'message' => self::COL_JP_{{ items.name|upper }}.'は{{ items.size }}文字以下で入力してください',
         ));
 {% endif %}
-        #endregion
 {% endif %}
 {% endfor %}
 
         return $validator;
     }
+
 }

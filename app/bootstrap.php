@@ -20,17 +20,17 @@ if ($database = $config->get('database')) {
     $username = $database['username'];
     $password = $database['password'];
 
-    \ORM::configure("mysql:host={$host};dbname={$db};charset=utf8");
-    \ORM::configure('username', $username);
+    \ORM::configure("mysql:host={$host};dbname={$db};charset=utf8", null, \ORM::DEFAULT_CONNECTION);
+    \ORM::configure('username', $username, \ORM::DEFAULT_CONNECTION);
     if ($password) {
-        \ORM::configure('password', $password);
+        \ORM::configure('password', $password, \ORM::DEFAULT_CONNECTION);
     }
-    \ORM::configure('caching', true);
-    \ORM::configure('caching_auto_clear', true);
-    \ORM::configure('default_charset', "utf-8");
+    \ORM::configure('caching', true, \ORM::DEFAULT_CONNECTION);
+    \ORM::configure('caching_auto_clear', true, \ORM::DEFAULT_CONNECTION);
+    \ORM::configure('default_charset', "utf-8", \ORM::DEFAULT_CONNECTION);
 }
 
-\Model::$auto_prefix_models = '\\Component\\Data\\Model\\';
+\Model::$auto_prefix_models = '\\Component\\Model\\';
 #endregion
 
 $app = new \Slim\App();

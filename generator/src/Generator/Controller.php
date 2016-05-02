@@ -85,34 +85,29 @@ class Controller
             $data['primary_key'] = $this->getPrimary($data['columns']);
 
             #region ディレクトリのパス
-            $model_dir = APP_ROOT . "/src/Component/Data/Model/";
-            $entity_dir = APP_ROOT . "/src/Component/Data/Model/Entity/";
-            $repository_dir = APP_ROOT . "/src/Component/Data/Table/";
+            $model_dir = APP_ROOT . "/src/Component/Model/";
+            $entity_dir = APP_ROOT . "/src/Component/Model/Entity/";
             #endregion
 
             #region ディレクトリ生成
             $this->mkDir($model_dir);
             $this->mkDir($entity_dir);
-            $this->mkDir($repository_dir);
             #endregion
 
 
             #region Class名
             $class_model = $table["php_name"] . ".php";
             $class_entity = $table["php_name"] . "Entity.php";
-            $class_repository = $table["php_name"] . "Table.php";
             #endregion
 
             #region view読み込み
             $model_view = $this->getTemplate('model.twig');
             $entity_view = $this->getTemplate('entity.twig');
-            $repository_view = $this->getTemplate('table.twig');
             #endregion
 
             #region ファイル生成
             $this->output($model_dir . $class_model, $view->render($model_view, compact('data')), false);
             $this->output($entity_dir . $class_entity, $view->render($entity_view, compact('data')), true);
-            $this->output($repository_dir . $class_repository, $view->render($repository_view, compact('data')), false);
             #endregion
 
         }
