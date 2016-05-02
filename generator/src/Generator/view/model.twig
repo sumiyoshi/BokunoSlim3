@@ -1,9 +1,9 @@
 <?php
 
 {% if data.table.category != '' %}
-namespace Component\Data\Model\{{data.table.category}};
+namespace Component\Model\{{data.table.category}};
 {% else %}
-namespace Component\Data\Model;
+namespace Component\Model;
 {% endif %}
 
 use Core\Validator\Validator;
@@ -16,9 +16,9 @@ use Core\Validator\Validator;
 {% endfor %}
  *
 {% if data.table.category != '' %}
- * @package Component\Data\Model\{{data.table.category}};
+ * @package Component\Model\{{data.table.category}};
 {% else %}
- * @package Component\Data\Model;
+ * @package Component\Model;
 {% endif %}
  */
 class {{data.table.php_name}} extends Entity\{{data.table.php_name}}Entity

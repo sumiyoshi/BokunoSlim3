@@ -46,7 +46,6 @@ class Logger
             #region log初期設定
             $logger = new ZendLogger();
 
-
             $file_name = date('Y-m-d') . '.log';
             $writer_err = new Stream($error_dir . $file_name);
             $writer_info = new Stream($info_dir . $file_name);
