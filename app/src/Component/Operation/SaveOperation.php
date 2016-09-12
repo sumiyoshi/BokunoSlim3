@@ -60,6 +60,10 @@ abstract class SaveOperation extends Operation
         /** @var \Core\Validator\Validator $validator */
         $validator = $model::getValidator();
 
+        if ($this->mode) {
+            $validator->addGroups($this->mode);
+        }
+
         if (!$validator->validate($this->getEntityData())) {
             $this->setError(ArrayUtil::shiftArray($validator->getMessages()));
             return;

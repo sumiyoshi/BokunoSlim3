@@ -19,7 +19,7 @@ class InArray extends AbstractRule
      */
     protected $default_configs = [
         'message' => '正しくない値です',
-        'groups' => 'default'
+        'groups' =>[]
     ];
 
     /**

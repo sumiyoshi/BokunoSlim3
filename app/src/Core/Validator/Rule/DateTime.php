@@ -19,7 +19,7 @@ class DateTime extends AbstractRule
      */
     protected $default_configs = [
         'message' => '正しくない日付です',
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

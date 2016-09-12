@@ -34,6 +34,13 @@ class Validator implements ValidatorInterface
     private $messages = null;
 
     /**
+     * @var array
+     */
+    private $groups = [
+        'default'
+    ];
+
+    /**
      * @param string $name
      * @param array $arguments
      *
@@ -70,10 +77,9 @@ class Validator implements ValidatorInterface
 
     /**
      * @param $data
-     * @param string $group
      * @return bool
      */
-    public function validate($data, $group = 'default')
+    public function validate($data)
     {
         $valid = true;
 
@@ -90,7 +96,7 @@ class Validator implements ValidatorInterface
 
                 $rule_name = $element_rule->getRuleName();
 
-                if ($element_rule->hasGroups($group) && $element_rule->validate($value, $data) === false) {
+                if ($element_rule->hasGroups($this->groups) && $element_rule->validate($value, $data) === false) {
                     $valid = false;
                     if (!isset($this->messages[$element_name])) {
                         $this->messages[$element_name] = [];
@@ -108,6 +114,46 @@ class Validator implements ValidatorInterface
         }
 
         return $valid;
+    }
+
+    /**
+     * @param $group
+     * @return $this
+     */
+    public function addGroups($group)
+    {
+        $this->groups[] = $group;
+
+        return $this;
+    }
+
+    /**
+     * @param $group
+     * @return $this
+     */
+    public function setGroups($group)
+    {
+
+        if (is_array($group)) {
+            $this->groups = $group;
+        } else {
+            $this->groups = [$group];
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $group
+     * @return $this
+     */
+    public function resetGroups($group)
+    {
+        if (isset($this->groups[$group])) {
+            unset($this->groups[$group]);
+        }
+
+        return $this;
     }
 
     /**

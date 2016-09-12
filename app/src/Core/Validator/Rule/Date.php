@@ -20,7 +20,7 @@ class Date extends AbstractRule
     protected $default_configs = [
         'message' => '形式が不正です',
         'format' => false,
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**
