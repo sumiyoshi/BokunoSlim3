@@ -19,7 +19,7 @@ class Callback extends AbstractRule
      */
     protected $default_configs = [
         'message' => 'invalid',
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

@@ -67,13 +67,19 @@ abstract class AbstractRule
     }
 
     /**
-     * @param $group
+     * @param array $groups
      * @return bool
      */
-    public function hasGroups($group)
+    public function hasGroups($groups)
     {
-        if (isset($this->configs['groups'])) {
-            return ($this->configs['groups'] == $group);
+        if (isset($this->configs['groups']) && count($this->configs['groups']) > 0) {
+            foreach ($groups as $group) {
+                if (array_search($group, $this->configs['groups']) !== false) {
+                    return true;
+                }
+            }
+
+            return false;
         } else {
             return true;
         }

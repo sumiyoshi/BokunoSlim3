@@ -24,7 +24,7 @@ class Length extends AbstractRule
             '{min}文字以上{max}文字以下で入力してください'
         ],
         'charset' => 'UTF-8',
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

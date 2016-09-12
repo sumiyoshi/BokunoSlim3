@@ -20,7 +20,7 @@ class NotEmpty extends AbstractRule
     protected $default_configs = [
         'message' => '必須項目です',
         'breakOnFailure' => true,
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

@@ -19,7 +19,7 @@ class Number extends AbstractRule
      */
     protected $default_configs = [
         'message' => '半角数字で入力してください',
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

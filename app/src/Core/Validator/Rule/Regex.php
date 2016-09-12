@@ -20,7 +20,7 @@ class Regex extends AbstractRule
      */
     protected $default_configs = [
         'message' => '形式が正しくありません',
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**

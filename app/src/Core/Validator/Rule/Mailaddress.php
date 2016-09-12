@@ -20,7 +20,7 @@ class Mailaddress extends AbstractRule
     protected $default_configs = [
         'message'        => 'メールアドレス形式ではありません',
         'breakOnFailure' => true,
-        'groups' => 'default'
+        'groups' => []
     ];
 
     /**
