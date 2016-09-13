@@ -6,7 +6,7 @@ return [
             'debug' => false,
             'template_path' => APP_ROOT . '/src/templates',
             'extension' => [
-                \Core\Twig\Extension\Form::class,
+                \Core\View\Twig\Extension\Form::class,
                 \Twig_Extension_Debug::class
             ]
         ],

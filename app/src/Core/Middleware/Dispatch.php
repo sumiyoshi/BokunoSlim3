@@ -1,16 +1,16 @@
 <?php
 
-namespace Http;
+namespace Core\Middleware;
 
 use Interop\Container\ContainerInterface;
 
 /**
- * Class Middleware
+ * Class Dispatch
  *
  * @package Core\Http
  * @author sumiyoshi
  */
-abstract class Middleware
+class Dispatch
 {
 
     /** @var  ContainerInterface */
@@ -42,12 +42,13 @@ abstract class Middleware
         $this->response = $response;
 
         #region 各種パラメータ取得
+        $moduleName = (isset($argument['module'])) ? static::camelcase($argument['module'], true) : 'Fron';
         $controllerName = (isset($argument['controller'])) ? static::camelcase($argument['controller'], true) : 'Index';
         $actionName = (isset($argument['action'])) ? static::camelcase($argument['action'], true) : 'index';
         $id = (isset($argument['id'])) ? $argument['id'] : null;
 
-        $template = $this->getTemplate($controllerName, $actionName);
-        $controllerName = $this->getController($controllerName);
+        $template = $this->getTemplate($moduleName, $controllerName, $actionName);
+        $controllerName = $this->getController($moduleName, $controllerName);
         $actionName = $this->getActionName($actionName);
         #endregion
 
@@ -142,25 +143,42 @@ abstract class Middleware
      * @param $actionName
      * @return \Slim\Http\Response
      */
-    abstract protected function dispatch($injection, $controller, $actionName);
+    protected function dispatch($injection, $controller, $actionName)
+    {
+        $response = $injection->invoke($actionName, $controller);
+
+        return $this->render($response, $controller->getTemplate(), $controller->dto);
+    }
 
     /**
+     * @param $moduleName
      * @param $controllerName
      * @param $actionName
      * @return string
      */
-    abstract protected function getTemplate($controllerName, $actionName);
+    protected function getTemplate($moduleName, $controllerName, $actionName)
+    {
+        $moduleName = lcfirst($moduleName);
+        return "{$moduleName}/" . static::snakeCase($controllerName) . '/' . static::snakeCase($actionName) . '.twig';
+    }
 
     /**
+     * @param $moduleName
      * @param $controllerName
      * @return string
      */
-    abstract protected function getController($controllerName);
+    protected function getController($moduleName, $controllerName)
+    {
+        return "\\Http\\{$moduleName}\\" . $controllerName . 'Controller';
+    }
 
     /**
      * @param $actionName
      * @return string
      */
-    abstract protected function getActionName($actionName);
+    protected function getActionName($actionName)
+    {
+        return $actionName . 'Action';
+    }
 
 }

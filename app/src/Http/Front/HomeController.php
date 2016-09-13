@@ -1,8 +1,8 @@
 <?php
 
-namespace Http\Front\Controller;
+namespace Http\Front;
 
-use Http\Controller;
+use Core\Application\Controller;
 
 /**
  * Class HomeController

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Twig\Extension;
+namespace Core\View\Twig\Extension;
 
 use Component\Service\Util\CommonUtil;
 use Core\Util\DateUtil;

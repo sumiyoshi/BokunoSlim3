@@ -1,16 +1,15 @@
 <?php
 
-namespace Core;
+namespace Core\Service;
 
 /**
  * Class Application
  *
- * @package Core
+ * @package  Core\Service
  * @author sumiyoshi
  */
-class Application
+class Config
 {
-
     use \Core\Traits\Singleton;
 
     /**
