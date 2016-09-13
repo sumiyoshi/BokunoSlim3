@@ -8,8 +8,8 @@ session_start();
 //シャットダウンハンドラー
 register_shutdown_function(['\Core\Service\ErrorHandler', 'shutdownHandler']);
 
-/** @var \Core\Application $config */
-$config = \Core\Application::getInstance();
+/** @var \Core\Service\Config $config */
+$config = \Core\Service\Config::getInstance();
 
 #region DB
 
@@ -31,12 +31,7 @@ if ($database = $config->get('database')) {
 }
 
 \Model::$auto_prefix_models = '\\Component\\Model\\';
-#endregion
 
-$app = new \Slim\App();
-
-#region ルーティング
-$app->any("/{controller:[a-zA-Z_0-9]*}/[{action:[a-zA-Z_0-9]*}/{id:[0-9]*}]", \Component\Middleware\FrontDispatch::class)->setName("front");
 #endregion
 
 #region ログの初期値セット
@@ -44,6 +39,11 @@ if ($log = $config->get('log')) {
   \Core\Service\Logger::$log_path = $log;
 }
 #endregion
+
+$app = new \Slim\App();
+
+# dependencies
+include APP_ROOT . '/config/route.php';
 
 # dependencies
 include APP_ROOT . '/config/dependencies.php';

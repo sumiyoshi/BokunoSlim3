@@ -1,6 +1,6 @@
 <?php
 
-namespace Http;
+namespace Core\Application;
 
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -8,7 +8,7 @@ use Slim\Http\Response;
 /**
  * Class Controller
  *
- * @package Core\Http
+ * @package Core\Application
  * @author sumiyoshi
  */
 abstract class Controller

@@ -6,8 +6,8 @@ use Core\Util\ArrayUtil;
 $container = $app->getContainer();
 
 $container['view'] = function ($c) {
-    /** @var \Core\Application $config */
-    $config = \Core\Application::getInstance();
+    /** @var \Core\Service\Config $config */
+    $config = \Core\Service\Config::getInstance();
     $view_config = $config->get('view');
 
     $view = new \Slim\Views\Twig($view_config['template_path'], $view_config);
@@ -50,13 +50,13 @@ $container['errorHandler'] = function ($c) {
      */
     return function ($request, $response, \Exception $e) use ($c) {
 
+
         /** @var \Slim\Container $c */
         $view = $c->get('view');
         $response = $c->get('response');
         $view->render($response, '500.twig');
 
         ErrorHandler::errorLog($e->getMessage(), $e->getFile(), $e->getLine());
-        ErrorHandler::send($e->getMessage(), $e->getFile(), $e->getLine());
 
         return $response->withStatus(500);
     };
