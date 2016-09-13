@@ -47,6 +47,17 @@ abstract class Controller
         $this->template = $template;
     }
 
+    public function render($argument)
+    {
+        if ($argument instanceof ViewModel) {
+            $this->dto['viewModel'] = $argument;
+        } elseif (is_array($argument)) {
+            $this->dto['data'] = $argument;
+        }
+        
+        return true;
+    }
+
     /**
      * @return string
      */

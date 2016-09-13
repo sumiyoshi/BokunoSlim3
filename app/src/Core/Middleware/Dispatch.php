@@ -32,9 +32,10 @@ class Dispatch
     }
 
     /**
-     * @param \Slim\Http\Request $request
-     * @param \Slim\Http\Response $response
-     * @return $response
+     * @param $request
+     * @param $response
+     * @param $argument
+     * @return \Slim\Http\Response
      */
     public function __invoke($request, $response, $argument)
     {
@@ -64,7 +65,7 @@ class Dispatch
             ->setInjectionClass([
                 'Slim\Http\Request' => $this->request,
                 'Slim\Http\Response' => $this->response,
-                'Interop\Container\ContainerInterface' => $this->container
+                'Interop\Container\ContainerInterface' => $this->container,
             ])
             ->setInjectionName([
                 'id' => $id,
@@ -73,7 +74,7 @@ class Dispatch
 
         #endregion
 
-        /** @var \Http\Controller $controller */
+        /** @var \Core\Application\Controller $controller */
         $controller = $injection->newInstance();
 
         #region アクションが存在しない場合
@@ -93,7 +94,7 @@ class Dispatch
      */
     protected function render($response, $template, $dto)
     {
-        if (is_array($response)) {
+        if ($response === true) {
             $this->container->get('view')->render($this->response, $template, $dto);
             return $this->response;
         } elseif ($response === false) {
@@ -139,7 +140,7 @@ class Dispatch
 
     /**
      * @param \Core\Service\Injection $injection
-     * @param \Http\Controller $controller
+     * @param \Core\Application\Controller $controller
      * @param $actionName
      * @return \Slim\Http\Response
      */
@@ -169,7 +170,7 @@ class Dispatch
      */
     protected function getController($moduleName, $controllerName)
     {
-        return "\\Http\\{$moduleName}\\" . $controllerName . 'Controller';
+        return "\\Http\\{$moduleName}\\Controller\\" . $controllerName . 'Controller';
     }
 
     /**

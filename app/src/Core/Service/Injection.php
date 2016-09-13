@@ -118,7 +118,14 @@ class Injection
             if (isset($this->injectionClass[$className])) {
                 return $this->injectionClass[$className];
             } else {
-                return new $className;
+                $reader = new \ReflectionClass($className);
+                $parameters = $reader->getMethod('__construct')->getParameters();
+
+                $args = [];
+                foreach ($parameters as $parameter) {
+                    $args[] = $this->getArgument($parameter);
+                }
+                return $reader->newInstanceArgs($args);
             }
         } elseif ($valueName = $parameter->getName()) {
 
