@@ -1,8 +1,9 @@
 <?php
 
-namespace Http\Front;
+namespace Http\Front\Controller;
 
 use Core\Application\Controller;
+use Http\Front\ViewModel\HomeViewModel;
 
 /**
  * Class HomeController
@@ -14,8 +15,8 @@ class HomeController extends Controller
     /**
      * @return array
      */
-    public function indexAction()
+    public function indexAction(HomeViewModel $viewModel)
     {
-        return $this->dto;
+        return $this->render($viewModel);
     }
 }
