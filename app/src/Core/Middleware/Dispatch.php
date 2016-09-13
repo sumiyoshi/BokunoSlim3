@@ -1,16 +1,16 @@
 <?php
 
-namespace Http;
+namespace Core\Middleware;
 
 use Interop\Container\ContainerInterface;
 
 /**
- * Class Middleware
+ * Class Dispatch
  *
  * @package Core\Http
  * @author sumiyoshi
  */
-abstract class Middleware
+abstract class Dispatch
 {
 
     /** @var  ContainerInterface */

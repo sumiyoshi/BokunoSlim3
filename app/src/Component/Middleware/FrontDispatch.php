@@ -1,12 +1,14 @@
 <?php
 
-namespace Http\Front;
+namespace Component\Middleware;
+
+use Core\Middleware\Dispatch;
 
 /**
- * Class FrontMiddleware
+ * Class FrontDispatch
  * @package App\Front
  */
-class FrontMiddleware extends \Http\Middleware
+class FrontDispatch extends Dispatch
 {
 
     /**
