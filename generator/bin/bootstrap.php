@@ -8,8 +8,8 @@ define('CONIFG_ROOT', APP_ROOT . '/config/');
 # autoload
 require SERVER_ROOT . '/vendor/autoload.php';
 
-/** @var \Core\Application $config */
-$config = \Core\Application::getInstance();
+/** @var \Core\Service\Config $config */
+$config = \Core\Service\Config::getInstance();
 
 #region DB
 if ($database = $config->get('database')) {
