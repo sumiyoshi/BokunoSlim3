@@ -18,7 +18,7 @@
     "browserify": "~11.0.*",
     "watchify": "~3.3.*",
     "jquery": "~3.0.*",
-    "moment": "~2.8.*",
+    "moment": "~2.19.*",
     "underscore": "~1.7.*",
     "underscore.string": "~2.3.*",
     "knockout": "~3.3.*"
